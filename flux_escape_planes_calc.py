@@ -19,8 +19,8 @@ def flux_escape_calculation(ds_key_lr, ds_key_hr, lr_plume_txt_name, lr_tail_txt
     fields_vx = ['O2_p1_velocity_x']
     fields_vz = ['O2_p1_velocity_z']
 
-    z_planes = np.arange(1.5,3.1,0.1)
-    x_planes = np.arange(-1.5,-3.1,-0.1)
+    z_planes = np.arange(1.5,4.1,0.1)
+    x_planes = np.arange(-1.5,-4.1,-0.1)
     print 'Setting up plume txt files'
     setup_vals = []
     f_lr_setup = open(lr_plume_txt_name,'ab')
@@ -37,8 +37,10 @@ def flux_escape_calculation(ds_key_lr, ds_key_hr, lr_plume_txt_name, lr_tail_txt
     print 'calculating plume planes'
     for i in range(len(z_planes)):
         print 'calculating plume plane {}'.format(z_planes[i])
-        x = np.linspace(-1*z_planes[i], z_planes[i], 40)
-        y = np.linspace(-1*z_planes[i], z_planes[i], 40)
+        #x = np.linspace(-1*z_planes[i], z_planes[i], 40)
+        #y = np.linspace(-1*z_planes[i], z_planes[i], 40)
+        x = np.linspace(-4.0, 4.0, 40)
+        y = np.linspace(-4.0, 4.0, 40)
         z = np.repeat(z_planes[i],1600)
         meshgrid_x, meshgrid_y = np.meshgrid(x,y)
         flat_meshgrid_x = meshgrid_x.flatten()
@@ -96,8 +98,11 @@ def flux_escape_calculation(ds_key_lr, ds_key_hr, lr_plume_txt_name, lr_tail_txt
     for i in range(len(x_planes)):
         print 'calculating tail plane {}'.format(x_planes[i])
         x = np.repeat(x_planes[i],1600)
-        y = np.linspace(x_planes[i], -1*x_planes[i], 40)
-        z = np.linspace(x_planes[i], -1*x_planes[i], 40)
+        #y = np.linspace(x_planes[i], -1*x_planes[i], 40)
+        #z = np.linspace(x_planes[i], -1*x_planes[i], 40)
+        y = np.linspace(-4.0, 4.0, 40)
+        z = np.linspace(-4.0, 4.0, 40)
+
         meshgrid_y, meshgrid_z = np.meshgrid(y,z)
         flat_meshgrid_y = meshgrid_y.flatten()
         flat_meshgrid_z = meshgrid_z.flatten()
